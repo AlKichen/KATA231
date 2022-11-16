@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import web.model.User;
 import web.service.UserService;
 
 @Controller
@@ -18,9 +21,20 @@ public class UserController {
     }
 
     @GetMapping
-    public String showAllUsers(Model model){
+    public String showAllUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("titleTable", "Список всех пользователей:");
         return "index";
+    }
+
+    @GetMapping("/addNewUser")
+    public String addNewUser(@ModelAttribute("user") User user) {
+        return "newUser";
+    }
+
+    @PostMapping
+    public String addCreateNewUser(@ModelAttribute("user") User user) {
+        userService.createNewUser(user);
+        return "redirect:/users";
     }
 }
