@@ -29,23 +29,30 @@
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">id</th>
         <th scope="col">Имя</th>
         <th scope="col">Фамилия</th>
         <th scope="col">Возраст</th>
+        <th scope="col">Email</th>
+        <th scope="col>">Действия</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="user : ${users}">
-        <td th:text="${user.getId()}">
+
         <td th:text="${user.getName()}">
         <td th:text="${user.getSurname()}">
         <td th:text="${user.getAge()}">
+        <td th:text="${user.getEmail()}">
+        <td>
+        <form th:action="@{/users/{id}/editUser(id=${user.getId()})}" target="_self">
+            <button>Обновить данные</button>
+        </form>
+        </td>
     </tr>
     </tbody>
 </table>
 <br>
-<form action="/users/addNewUser" target="_blank">
+<form action="/users/addUser" target="_self">
     <button>Добавить нового пользователя</button>
 </form>
 </body>
