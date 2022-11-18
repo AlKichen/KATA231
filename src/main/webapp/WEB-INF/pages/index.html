@@ -9,6 +9,8 @@
             margin-bottom: 20px;
             border: 1px solid #dddddd;
             border-collapse: collapse;
+            vertical-align: center;
+            text-align: center;
         }
 
         .table th {
@@ -21,6 +23,9 @@
         .table td {
             border: 1px solid #dddddd;
             padding: 5px;
+        }
+        form {
+            display: inline;
         }
     </style>
 </head>
@@ -46,6 +51,9 @@
         <td>
         <form th:action="@{/users/{id}/editUser(id=${user.getId()})}" target="_self">
             <button>Обновить данные</button>
+        </form>
+        <form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+            <button>Удалить пользователя</button>
         </form>
         </td>
     </tr>

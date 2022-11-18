@@ -40,4 +40,10 @@ public class UserDaoImpl implements UserDao {
         entityManager.merge(userToBeUpdated);
     }
 
+    @Override
+    @Transactional
+    public void deleteUser(Long id) {
+        entityManager.remove(getUser(id));
+    }
+
 }
